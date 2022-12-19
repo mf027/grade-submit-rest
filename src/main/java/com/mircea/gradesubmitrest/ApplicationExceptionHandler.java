@@ -13,11 +13,12 @@ import com.mircea.gradesubmitrest.exception.EntityNotFoundException;
 import com.mircea.gradesubmitrest.exception.ErrorResponse;
 import com.mircea.gradesubmitrest.exception.GradeNotFoundException;
 import com.mircea.gradesubmitrest.exception.StudentNotEnrolledException;
+import com.mircea.gradesubmitrest.exception.UserNotFoundException;
 
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({EntityNotFoundException.class, GradeNotFoundException.class, StudentNotEnrolledException.class})
+    @ExceptionHandler({EntityNotFoundException.class, GradeNotFoundException.class, StudentNotEnrolledException.class, UserNotFoundException.class})
     public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
